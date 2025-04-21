@@ -1,7 +1,18 @@
-import {AfterViewInit, Component, ElementRef, OnInit, viewChild, ViewChild, ViewChildren} from '@angular/core';
+import {
+  afterNextRender,
+  afterRender,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  viewChild,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {ButtonComponent} from "../../../shared/button/button.component";
 import {ControlComponent} from "../../../shared/control/control.component";
 import {FormsModule} from "@angular/forms";
+import * as console from "node:console";
 
 @Component({
   selector: 'app-new-ticket',
@@ -21,6 +32,15 @@ export class NewTicketComponent implements OnInit, AfterViewInit{
   // available with angular 17+
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
 
+  constructor() {
+    afterRender(() => {
+      console.log('afterRender')
+    })
+
+    afterNextRender(() => {
+      console.log('afterNextRender')
+    })
+  }
 
   ngOnInit() {
     console.log("INSIDE ON INIT")
