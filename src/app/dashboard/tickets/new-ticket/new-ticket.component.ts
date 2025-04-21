@@ -12,7 +12,6 @@ import {
 import {ButtonComponent} from "../../../shared/button/button.component";
 import {ControlComponent} from "../../../shared/control/control.component";
 import {FormsModule} from "@angular/forms";
-import * as console from "node:console";
 
 @Component({
   selector: 'app-new-ticket',
