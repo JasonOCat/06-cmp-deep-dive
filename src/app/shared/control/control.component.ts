@@ -1,4 +1,13 @@
-import {Component, contentChild, ContentChild, ElementRef, inject, input, ViewEncapsulation,} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  contentChild,
+  ContentChild,
+  ElementRef,
+  inject,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
 
 
 @Component({
@@ -14,7 +23,7 @@ import {Component, contentChild, ContentChild, ElementRef, inject, input, ViewEn
   }
 })
 
-export class ControlComponent {
+export class ControlComponent implements AfterViewInit{
   // @HostBinding('class') className = 'control';
   // @HostListener('click') onClick() {
   //   console.log('Clicked');
@@ -24,7 +33,13 @@ export class ControlComponent {
   private el = inject(ElementRef)
 
   // @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
-  private control = contentChild.required<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+  private control = contentChild
+    .required<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  ngAfterViewInit() {
+    console.log("INSIDE NG AFTER VIEW INIT")
+    console.log(this.control());
+  }
 
   onClick() {
     console.log('Clicked');
