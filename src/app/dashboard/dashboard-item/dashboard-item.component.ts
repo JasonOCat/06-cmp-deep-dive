@@ -5,7 +5,7 @@ import {Component, input} from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './dashboard-item.component.html',
-  styleUrl: './dashboard-item.component.css'
+  styleUrl: './dashboard-item.component.css',
 })
 export class DashboardItemComponent {
   image = input.required<{ src: string, alt: string}>();
