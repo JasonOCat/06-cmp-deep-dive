@@ -3,8 +3,8 @@ import {
   afterRender,
   AfterViewInit,
   Component,
-  ElementRef,
-  OnInit,
+  ElementRef, EventEmitter,
+  OnInit, output, Output,
   viewChild,
   ViewChild,
   ViewChildren
@@ -24,12 +24,15 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css'
 })
-export class NewTicketComponent implements OnInit, AfterViewInit{
+export class NewTicketComponent implements OnInit, AfterViewInit {
 
   // @ViewChild('form') private form?: ElementRef<HTMLFormElement>;
   // @ViewChildren(ButtonComponent) buttons?: ButtonComponent[];
   // available with angular 17+
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
+
+  // @Output() add = new EventEmitter<{title: string, text: string}>();
+  add = output<{ title: string, text: string }>();
 
   constructor() {
     afterRender(() => {
@@ -52,9 +55,9 @@ export class NewTicketComponent implements OnInit, AfterViewInit{
   }
 
   onSubmit(titleInput: string, textInput: string) {
-    console.log('SUBMITTED');
-    console.log(titleInput + ' ' + textInput);
     // this.form?.nativeElement.reset()
     this.form()?.nativeElement.reset()
+
+    this.add.emit({title: titleInput, text: textInput});
   }
 }
