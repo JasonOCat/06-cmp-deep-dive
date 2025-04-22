@@ -2,7 +2,7 @@
   <ul>
     @for (ticket of tickets; track ticket.id) {
 <!--      can use {{ $first }}  {{ $last }} {{ $odd }} {{ $even }}-->
-      <app-ticket />
+      <app-ticket [data]="ticket"/>
     } @empty {
       <p>No tickets</p>
     }
