@@ -30,6 +30,8 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   // @ViewChildren(ButtonComponent) buttons?: ButtonComponent[];
   // available with angular 17+
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
+  enteredTitle = '';
+  enteredText = '';
 
   // @Output() add = new EventEmitter<{title: string, text: string}>();
   add = output<{ title: string, text: string }>();
@@ -54,10 +56,12 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     console.log(this.form());
   }
 
-  onSubmit(titleInput: string, textInput: string) {
-    // this.form?.nativeElement.reset()
-    this.form()?.nativeElement.reset()
+  onSubmit() {
+    // this.form()?.nativeElement.reset()
+    this.add.emit({title: this.enteredTitle, text: this.enteredText});
 
-    this.add.emit({title: titleInput, text: textInput});
+    this.enteredTitle = '';
+    this.enteredText = '';
+
   }
 }
