@@ -2,7 +2,7 @@
   <ul>
     @for (ticket of tickets; track ticket.id) {
 <!--      can use {{ $first }}  {{ $last }} {{ $odd }} {{ $even }}-->
-      <app-ticket [data]="ticket"/>
+      <app-ticket [data]="ticket" (close)="onCloseTicket(ticket.id)"/>
     } @empty {
       <p>No tickets</p>
     }
@@ -10,6 +10,6 @@
 </div>
 
 <div id="new-ticket">
-  <app-new-ticket (add)="onAdd($event)"/>
+  <app-new-ticket (add)="onAdd($event)" />
 </div>
 
